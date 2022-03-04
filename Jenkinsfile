@@ -17,7 +17,7 @@ pipeline{
         stage('push stage'){
             steps{
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh "docker build -t nitinsomani/samplenodeapp ."
+                sh "docker push nitinsomani/samplenodeapp:latest"
             }
         }
     }
