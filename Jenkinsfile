@@ -11,13 +11,18 @@ pipeline{
         }
         stage('build stage'){
             steps{
-                sh "docker build -t nitinsomani/samplenodeapp ."
+                sh "docker build -t nitinsomani/samplenodeapp:$(BUILD_NUMBER) ."
             }
         }
         stage('push stage'){
             steps{
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh "docker push nitinsomani/samplenodeapp:latest"
+                sh "docker push nitinsomani/samplenodeapp:$(BUILD_NUMBER)"
+            }
+        }
+        stage('deploy stage'){
+            steps{
+                sh 'docker container run -itd -p 3000:3000 nitinsomani/samplenodeapp:$(BUILD_NUMBER)'
             }
         }
     }
