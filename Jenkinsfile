@@ -11,13 +11,13 @@ pipeline{
         }
         stage('build stage'){
             steps{
-		    sh 'docker build -t saiteja199549/samplenodeapp:${BUILD_NUMBER} .'
+		    sh 'docker build -t saiteja1995/samplenodeapp:${BUILD_NUMBER} .'
             }
         }
         stage('push stage'){
             steps{
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh 'docker push saiteja199549/samplenodeapp:${BUILD_NUMBER}'
+                sh 'docker push saiteja1995/samplenodeapp:${BUILD_NUMBER}'
             }
         }
         stage('deploy stage'){
