@@ -22,7 +22,7 @@ pipeline{
         }
         stage('deploy stage'){
             steps{
-                sh 'docker container run -itd -p 3000:3000 saiteja199549/samplenodeapp:${BUILD_NUMBER}'
+                sh 'docker container run -itd -p 3000:3000 saiteja1995/samplenodeapp:${BUILD_NUMBER}'
             }
         }
     }
